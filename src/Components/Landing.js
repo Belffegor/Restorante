@@ -19,7 +19,9 @@ class Landing extends React.Component {
   };
 
   goToRestaurant = () => {
-    console.log("goToRestaurant");
+    const { url } = this.state;
+
+    this.props.history.push(`/restaurant/${url}`);
   };
 
   render() {
@@ -40,7 +42,7 @@ class Landing extends React.Component {
           </div>
 
           {this.state.display ? (
-            <div className="restaurant_select_botom">
+            <div className="restaurant_select_bottom">
               <ul>
                 {restaurants.map((restaurant) => {
                   return (

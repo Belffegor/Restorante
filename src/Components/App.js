@@ -8,13 +8,13 @@ class App extends React.Component {
     return (
       <div className="burger-paradise">
         <div className="menu">
-          <Header title="Very hot Burger"/>
+          <Header title="Very hot Burger" />
         </div>
         <Order />
         <MenuAdmin />
       </div>
     );
   }
-}
+};
 
 export default App;
