@@ -1,8 +1,6 @@
-import React from 'react';
-import {render} from 'react-dom';
-import App from './Components/App';
-import './css/style.css';
+import React from "react";
+import { render } from "react-dom";
+import Router from "./Components/Router";
+import "./css/style.css";
 
-
-
-render(<App/>, document.querySelector('#root'))
+render(<Router />, document.querySelector("#root"));
