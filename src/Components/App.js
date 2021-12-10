@@ -44,14 +44,14 @@ class App extends React.Component {
                 <Burger
                   key={key}
                   index={key}
-                  addToOrder ={this.addToOrder}
+                  addToOrder={this.addToOrder}
                   details={this.state.burgers[key]}
                 />
               );
             })}
           </ul>
         </div>
-        <Order />
+        <Order burgers={this.state.burgers} order={this.state.order} />
         <MenuAdmin
           addBurger={this.addBurger}
           loadSampleBurgers={this.loadSampleBurgers}
