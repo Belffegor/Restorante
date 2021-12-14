@@ -13,8 +13,17 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    console.log("mount");
-  };
+    const { params } = this.props.match;
+    // this.ref = base.syncState(`${this.props.match.params.restaurantId}`) или деструктуризацтя котороая выше
+    this.ref = base.syncState(`${params.restaurantId}/burgers`, {
+      context: this,
+      state: "burgers",
+    });
+  }
+
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
+  }
 
   addBurger = (burger) => {
     // 1 делаем копию объекта state
