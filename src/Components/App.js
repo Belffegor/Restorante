@@ -4,11 +4,16 @@ import Order from "./Order";
 import MenuAdmin from "./MenuAdmin";
 import sampleBurgers from "./sample-burgers";
 import Burger from "./Burger";
+import base from "../Base";
 
 class App extends React.Component {
   state = {
     burgers: {},
     order: {},
+  };
+
+  componentDidMount() {
+    console.log("mount");
   };
 
   addBurger = (burger) => {
