@@ -15,6 +15,7 @@ const firebaseApp = firebase.initializeApp({
     authDomain: "burgers-176c6.firebaseapp.com",
     databaseURL: "https://burgers-176c6-default-rtdb.europe-west1.firebasedatabase.app"
    
+   
 });
 
 const base = Rebase.createClass(firebaseApp.database());
