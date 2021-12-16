@@ -1,5 +1,6 @@
 import React from "react";
 import Shipment from "./Shipment";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 class Order extends React.Component {
   renderOrder = (key) => {
@@ -11,26 +12,38 @@ class Order extends React.Component {
 
     if (!isAvailable) {
       return (
-        <li className="unavailable" key={key}>
-          Извините, {burger ? burger.name : "бургер"} временно недоступен
-        </li>
+        <CSSTransition
+          classNames="order"
+          key={key}
+          timeout={{ enter: 5000, exit: 5000 }}
+        >
+          <li className="unavailable" key={key}>
+            Извините, {burger ? burger.name : "бургер"} временно недоступен
+          </li>
+        </CSSTransition>
       );
     }
 
     return (
-      <li key={key}>
-        <span>
-          <span>{count}</span>
-          шт. {burger.name}
-          <span> {count * burger.price} ₽ </span>
-          <button
-            onClick={() => this.props.deleteFromOrder(key)}
-            className="cancellItem"
-          >
-            &times;
-          </button>
-        </span>
-      </li>
+      <CSSTransition
+        classNames="order"
+        key={key}
+        timeout={{ enter: 5000, exit: 5000 }}
+      >
+        <li key={key}>
+          <span>
+            <span>{count}</span>
+            шт. {burger.name}
+            <span> {count * burger.price} ₽ </span>
+            <button
+              onClick={() => this.props.deleteFromOrder(key)}
+              className="cancellItem"
+            >
+              &times;
+            </button>
+          </span>
+        </li>
+      </CSSTransition>
     );
   };
 
@@ -50,7 +63,9 @@ class Order extends React.Component {
     return (
       <div className="order-wrap">
         <h2>Ваш заказ:</h2>
-        <ul className="order">{orderIds.map(this.renderOrder)}</ul>
+        <TransitionGroup component="ul" className="order">
+          {orderIds.map(this.renderOrder)}
+        </TransitionGroup>
         {total > 0 ? (
           <Shipment total={total} />
         ) : (
