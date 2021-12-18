@@ -1,27 +1,28 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const  Header = props =>  //(props)- передаем в качестве параметраю мщжно диструктурировать ({title, amount})
-   (
-    <header className="top">
-      <div className="wrap">
-        <div className="header-content">
-          <div className="header-rating">
-            <div className="header-rating_tag">Рейтинг:</div>
-            <div className="header-rating_icon">★★★★★</div>
-          </div>
-          <div className="header-divider"></div>
-          <h1 className="font-effect-fire-animation">{props.title} </h1>
-          <h3>
-            <span>
-              Быстрая доставка горячих
-              <span className="sub-header">#бургеров</span>
-            </span>
-          </h3>
+const Header = (
+  props //(props)- передаем в качестве параметраю мщжно диструктурировать ({title, amount})
+) => (
+  <header className="top">
+    <div className="wrap">
+      <div className="header-content">
+        <div className="header-rating">
+          <div className="header-rating_tag">Рейтинг:</div>
+          <div className="header-rating_icon">★★★★★</div>
         </div>
+        <div className="header-divider"></div>
+        <h1 className="font-effect-fire-animation">{props.title} </h1>
+        <h3>
+          <span>
+            Быстрая доставка горячих
+            <span className="sub-header">#бургеров</span>
+          </span>
+        </h3>
       </div>
-    </header>
-  );
-
+    </div>
+  </header>
+);
 
 // class Header extends React.Component {
 //   render() {
@@ -47,5 +48,9 @@ const  Header = props =>  //(props)- передаем в качестве пар
 //     );
 //   }
 // }
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired
+};
 
 export default Header;
