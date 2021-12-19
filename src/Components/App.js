@@ -1,17 +1,17 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import Header from "./Header";
 import Order from "./Order";
 import MenuAdmin from "./MenuAdmin";
 import sampleBurgers from "./sample-burgers";
 import Burger from "./Burger";
 import base from "../Base";
-
+import firebase from "firebase/app";
+import Singin from "./Auth/Singin";
 
 class App extends React.Component {
-
   static propTypes = {
-    match: PropTypes.object
+    match: PropTypes.object,
   };
 
   state = {
@@ -83,45 +83,54 @@ class App extends React.Component {
     this.setState({ order });
   };
 
-  deleteFromOrder = key => {
-     // 1 делаем копию объекта state
-     const order = { ...this.state.order };
-     //2 удаляем Burger
-     delete order[key];
-     //3. записываем наш новый объект order в state
+  deleteFromOrder = (key) => {
+    // 1 делаем копию объекта state
+    const order = { ...this.state.order };
+    //2 удаляем Burger
+    delete order[key];
+    //3. записываем наш новый объект order в state
     this.setState({ order });
+  };
+
+  handleLogout = async () => {
+    await firebase.auth().signOut();
+    window.location.reload();
   };
 
   render() {
     return (
-      <div className="burger-paradise">
-        <div className="menu">
-          <Header title="Very hot Burger" />
-          <ul className="burgers">
-            {Object.keys(this.state.burgers).map((key) => {
-              return (
-                <Burger
-                  key={key}
-                  index={key}
-                  addToOrder={this.addToOrder}
-                  details={this.state.burgers[key]}
-                />
-              );
-            })}
-          </ul>
+      <Singin>
+        <div className="burger-paradise">
+          <div className="menu">
+            <Header title="Very hot Burger" />
+            <ul className="burgers">
+              {Object.keys(this.state.burgers).map((key) => {
+                return (
+                  <Burger
+                    key={key}
+                    index={key}
+                    addToOrder={this.addToOrder}
+                    details={this.state.burgers[key]}
+                  />
+                );
+              })}
+            </ul>
+          </div>
+          <Order
+            burgers={this.state.burgers}
+            order={this.state.order}
+            deleteFromOrder={this.deleteFromOrder}
+          />
+          <MenuAdmin
+            addBurger={this.addBurger}
+            loadSampleBurgers={this.loadSampleBurgers}
+            burgers={this.state.burgers}
+            updateBurger={this.updateBurger}
+            deleteBurger={this.deleteBurger}
+            handleLogout = {this.handleLogout}
+          />
         </div>
-        <Order
-         burgers={this.state.burgers}
-          order={this.state.order}
-          deleteFromOrder = {this.deleteFromOrder} />
-        <MenuAdmin
-          addBurger={this.addBurger}
-          loadSampleBurgers={this.loadSampleBurgers}
-          burgers={this.state.burgers}
-          updateBurger={this.updateBurger}
-          deleteBurger={this.deleteBurger}
-        />
-      </div>
+      </Singin>
     );
   }
 }

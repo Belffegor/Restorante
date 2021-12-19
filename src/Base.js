@@ -1,6 +1,7 @@
 import Rebase from "re-base";
 import firebase from "firebase/app";
-require('firebase/database');
+import 'firebase/database';
+import 'firebase/auth';
 
 // import { initializeApp} from 'firebase/app';
 
