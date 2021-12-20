@@ -15,7 +15,7 @@ class MenuAdmin extends React.Component {
     deleteBurger: PropTypes.func,
     updateBurger: PropTypes.func,
     addBurger: PropTypes.func,
-    loadSampleBurgers: PropTypes.func,
+    loadSampleBurgers: PropTypes.func
   };
 
   componentDidMount() {

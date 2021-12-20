@@ -282,9 +282,11 @@ header.top .header-content .sub-header {
   color: #f00;
 }
 .burger-paradise {
-  display: grid;
+  /* display: grid;
   grid-template-columns: 2fr 1fr 1.5fr;
-  grid-gap: 10px;
+  grid-gap: 10px; */
+  display: flex;
+  flex-wrap: wrap;
   height: 94vh;
   max-width: 1500px;
   margin: 0 auto;
